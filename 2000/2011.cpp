@@ -9,7 +9,7 @@ string input;
 const int mod = 1000000;
 
 int main()
-{;
+{
 	cin >> input;
 	if (input[0] == 48)return cout << 0, 0;
 	for (int i = 2; i <= input.size(); i++)
