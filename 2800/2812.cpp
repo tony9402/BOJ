@@ -19,6 +19,6 @@ int main()
 		while (k > 0 && dq.size() && dq.back() < i)dq.pop_back(),k--;
 		dq.push_back(i);
 	}
-	for (int i = 0; i < dq.size() - k; i++)cout << ia;
+	for (int i = 0; i < dq.size() - k; i++)cout << dq[i];
 	return 0;
 }
