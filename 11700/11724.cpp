@@ -4,7 +4,7 @@
 
 using namespace std;
 
-vector<vector<int> > map;
+vector<vector<int>> map;
 vector<bool> visit;
 queue<int> q;
 
@@ -32,7 +32,6 @@ int main()
 		{
 			int qt = q.front();
 			q.pop();
-
 			for (int j = 0; j < map[qt].size(); j++) {
 				if (!visit[map[qt][j]]) {
 					q.push(map[qt][j]);
@@ -41,6 +40,5 @@ int main()
 			}
 		}
 	}
-
 	cout << count;
 }
