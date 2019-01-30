@@ -1,27 +1,15 @@
 #include<iostream>
-#include<cstring>
 #include<queue>
-#include<vector>
-#define _P pair<int, int>
-#define P pair<_P, int>
-#define mp make_pair
+#include<cstring>
+#include<algorithm>
+#define p pair<int, int>
 
 using namespace std;
 
-vector<vector<int> > map;
-queue<P> q;
-bool visit[400][400] = { 0 };
-
-int dir[8][2] = 
-{
-{-1,-2},
-{-2,-1},
-{-2,1},
-{-1,2},
-{1,-2},
-{2,-1},
-{1,2},
-{2,1} };
+int dx[] = { -2,-1,1,2,2,1,-1,-2 };
+int dy[] = { 1,2,2,1,-1,-2,-2,-1 };
+bool visit[301][301];
+queue<p> q;
 
 int main()
 {
@@ -30,38 +18,51 @@ int main()
 
 	int t;
 	cin >> t;
-	while (t--)
+	for (; t--;)
 	{
-		int sy, sx, ey, ex, n;
-		cin >> n >> sy >> sx >> ey >> ex;
-		
-		q = queue<P>();
-		q.push(mp(mp(sy, sx), 0));
+		int n;
+		cin >> n;
+		int sx, sy, ex, ey;
+		cin >> sy >> sx >> ey >> ex;
 		memset(visit, 0, sizeof(visit));
-		visit[sy][sx] = 1;
-
+		q = queue<p>();
+		q.push(make_pair(sy, sx));
+		visit[sy][sx] = true;
+		int count = 0;
+		bool check = false;
 		while (!q.empty())
 		{
-			int ny = q.front().first.first;
-			int nx = q.front().first.second;
-			int cnt = q.front().second; q.pop();
-
-			if (ny == ey && nx == ex)
+			int qsize = q.size();
+			++count;
+			while (qsize--)
 			{
-				cout << cnt << '\n';
-				break;
-			}
-			for (int i = 0; i < 8; i++)
-			{
-				int qy = dir[i][1] + ny;
-				int qx = dir[i][0] + nx;
-				if (0 > qy || qy >= n || 0 > qx || qx >= n)continue;
-				if (!visit[qy][qx])
+				auto now = q.front(); q.pop();
+				int ny = now.first;
+				int nx = now.second;
+				if (ny == ey && nx == ex)
 				{
-					visit[qy][qx] = true;
-					q.push(mp(mp(qy, qx), cnt + 1));
+					cout << count - 1 << '\n';
+					check = true;
+					break;
+				}
+				
+				for (int i = 0; i < 8; i++)
+				{
+					int qy = ny + dy[i];
+					int qx = nx + dx[i];
+
+					if (0 > qy || qy > n || 0 > qx || qx >= n)continue;
+
+					if (!visit[qy][qx])
+					{
+						q.push(make_pair(qy, qx));
+						visit[qy][qx] = true;
+					}
 				}
 			}
+			if (check)break;
 		}
 	}
+
+	return 0;
 }
