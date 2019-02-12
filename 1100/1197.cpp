@@ -1,7 +1,6 @@
 #include<iostream>
 #include<tuple>
 #include<cstring>
-#include<queue>
 #include<vector>
 #include<algorithm>
 
@@ -11,7 +10,7 @@
 
 using namespace std;
 
-priority_queue<T, vector<T>, greater<T>> pq;
+vector<T> vc;
 int tree[10001];
 
 int find(int a)
@@ -41,19 +40,19 @@ int main()
 	{
 		int a, b, c;
 		cin >> a >> b >> c;
-		pq.push(mt(c, a, b));
+		vc.push_back(mt(c, a, b));
 	}
 
+	sort(vc.begin(), vc.end());
+
 	int ans = 0, cnt = 0;
-	while (!pq.empty())
-	{
-		T now = pq.top(); pq.pop();
-		if (merge(GET(now, 1), GET(now, 2)))
+	for (auto i : vc)
+		if (merge(GET(i, 1), GET(i, 2)))
 		{
-			ans += GET(now, 0);
+			ans += GET(i, 0);
 			if (++cnt == n - 1)break;
 		}
-	}
+
 	cout << ans;
 	return 0;
 }
