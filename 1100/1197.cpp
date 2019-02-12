@@ -45,12 +45,16 @@ int main()
 
 	int ans = 0, cnt = 0;
 	for (auto &i : vc)
-		if (merge(GET(i, 1), GET(i, 2)))
+	{
+		int a = GET(i, 1);
+		int b = GET(i, 2);
+		int c = GET(i, 0);
+		if (merge(a, b))
 		{
-			ans += GET(i, 0);
+			ans += c;
 			if (++cnt == n - 1)break;
 		}
-
+	}
 	cout << ans;
 	return 0;
 }
