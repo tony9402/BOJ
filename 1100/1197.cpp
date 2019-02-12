@@ -14,7 +14,8 @@ int tree[10001];
 
 int find(int a)
 {
-	return tree[a] < 0 ? a : find(tree[a]);
+	if (tree[a] < 0)return a;
+	return tree[a] = find(tree[a]);
 }
 
 bool merge(int a, int b)
