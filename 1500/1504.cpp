@@ -42,6 +42,8 @@ ll dijkstra(int s, int e, int n)
 
 int main()
 {
+	ios::sync_with_stdio(false);
+	cin.tie(0);
 	int n, m;
 	cin >> n >> m;
 	map.resize(n + 1);
