@@ -1,16 +1,15 @@
 #include<iostream>
-#include<tuple>
 #include<cstring>
 #include<vector>
 #include<algorithm>
 
-#define GET(x,a) get<a>(x)
-#define T tuple<int,int,int>
-#define mt make_tuple
+#define _p pair<int, int>
+#define p pair<int, _p>
+#define mp make_pair
 
 using namespace std;
 
-vector<T> vc;
+p vc[100001];
 int tree[10001];
 
 int find(int a)
@@ -35,20 +34,15 @@ int main()
 	cin >> n >> m;
 	memset(tree, -1, sizeof(tree));
 	for (int i = 0; i < m; i++)
-	{
-		int a, b, c;
-		cin >> a >> b >> c;
-		vc.push_back(mt(c, a, b));
-	}
-
-	sort(vc.begin(), vc.end());
+		cin >> vc[i].second.first >> vc[i].second.second >> vc[i].first;
+	sort(vc, vc + m);
 
 	int ans = 0, cnt = 0;
 	for (auto &i : vc)
 	{
-		int a = GET(i, 1);
-		int b = GET(i, 2);
-		int c = GET(i, 0);
+		int a = i.second.first;
+		int b = i.second.second;
+		int c = i.first;
 		if (merge(a, b))
 		{
 			ans += c;
