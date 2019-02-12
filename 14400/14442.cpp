@@ -58,6 +58,6 @@ int main()
 			}
 		}
 	}
-	printf("%d",ans == 10e7 ? -1 : ans + 1);
+	printf("%d", ans == 10e7 ? -1 : ans + 1);
 	return 0;
 }
