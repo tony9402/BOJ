@@ -15,9 +15,7 @@ int tree[10001];
 
 int find(int a)
 {
-	if (tree[a] < 0)
-		return a;
-	return find(tree[a]);
+	return tree[a] < 0 ? a : find(tree[a]);
 }
 
 bool merge(int a, int b)
@@ -46,7 +44,7 @@ int main()
 	sort(vc.begin(), vc.end());
 
 	int ans = 0, cnt = 0;
-	for (auto i : vc)
+	for (auto &i : vc)
 		if (merge(GET(i, 1), GET(i, 2)))
 		{
 			ans += GET(i, 0);
