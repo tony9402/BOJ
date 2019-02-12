@@ -15,14 +15,15 @@ int tree[10001];
 
 int find(int a)
 {
-	return tree[a] < 0 ? a : find(tree[a]);
+	if (tree[a] < 0)return a;
+	return tree[a] = find(tree[a]);
 }
 
 bool merge(int a, int b)
 {
 	a = find(a);
 	b = find(b);
-	if (a==b)return false;
+	if (a == b)return false;
 	tree[b] = a;
 	return true;
 }
